@@ -163,19 +163,3 @@ class Gaussian(Base):
             return "mean {:.2f}, standard deviation {:.2f}".format(self.mean, self.stdev)
         else:
             return "The Gaussian object has not data"
-
-if __name__ == "__main__":
-    gaus_a = Gaussian([1,3,9,23,12,56,33,15,12])
-    gaus_b = Gaussian([4,5,6,4,5,6])
-    print(gaus_a.mean)
-    print(gaus_b.stdev)
-    gaus_a.plot_histogram_pdf
-    _ = input("Press enter to continue")
-    plt.close()
-    gaus_b.plot_histogram
-    _ = input("Press enter to continue")
-    gaus_c = gaus_a + gaus_b
-    print(gaus_b.mean, gaus_c.mean)
-    plt.close()
-    gaus_c.plot_histogram_pdf
-    _ = input("Press enter to continue")
