@@ -80,11 +80,9 @@ class Gaussian(Base):
         else:
             logging.warning("Distribution object is empty!")
 
-    def __prob_x(self, x):
-        """Function to calculate the probability of a value from its Gaussian
-            distribution. Ideally the probaility of a data point is zero in a
-            continuous distribution. But here we calculate it for plotting the
-            probability distribution function.
+    def __pdf_x(self, x):
+        """Function to evaluate the probability density function at x for Gaussian
+            distribution.
 
 		Args:
 			x (float): data point for calculating its probability.
@@ -125,7 +123,7 @@ class Gaussian(Base):
             for i in range(n_spaces):
                 tmp = min_range + interval*i
                 x.append(tmp)
-                y.append(self.__prob_x(tmp))
+                y.append(self._pdf_x(tmp))
 
             # make the plots
             plt.hist(self.data, density=True)
