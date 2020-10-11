@@ -11,6 +11,8 @@ class Gaussian(Base):
         mean (float) mean of the dataset (default = None)
         stdev (float) standard deviation of the dataset (default = None)
         data (list of floats) a list of floats representing the data (default = None)
+        is_sample_data (bool): whether the data is sample or population
+            (default=True)
 
     Parameters:
         data (string or list of floats) string representing the file_name
@@ -20,7 +22,7 @@ class Gaussian(Base):
     """
 
     def __init__(self, data = None, is_sample_data = True):
-        super(Gaussian, self).__init__(data)
+        super(Gaussian, self).__init__(data, is_sample_data)
         if self.data == None:
             self.mean = None
             self.stdev = None
@@ -145,8 +147,10 @@ class Gaussian(Base):
 			Gaussian (object): combined gaussian object
 		"""
 
-        result = Gaussian(self.add_data(other.data))
-        return result
+        update_data = self.data + other.data
+        is_sample_data = (self.is_sample_data and other.is_sample_data)
+        new_gaussian = Gaussian(update_data, is_sample_data)
+        return new_gaussian
 
     def __repr__(self):
         """Function to output the characteristics of the Gaussian instance

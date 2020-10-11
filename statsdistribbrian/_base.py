@@ -3,17 +3,22 @@ class Base():
 
     Attributes:
         data (list of floats): a list of floats extracted from the file
+        is_sample_data (bool): whether the data is sample or population
+            (default=True)
 
     Parameters:
         data (string or list of floats): string representing the file_name
             to read the data values or data directly passed as a list
+        is_sample_data (bool): whether the data is sample or population
+            (default=True)
 
     Returns:
         self (object): a distribution object of self
     """
 
-    def __init__(self, data=None):
+    def __init__(self, data=None, is_sample_data = True):
         self.data = []
+        self.is_sample_data = is_sample_data
 
         if type(data) == type([]):
             self.data = data
@@ -32,7 +37,7 @@ class Base():
             self.data = None
 
     def add_data(self, data):
-        """function to add data to the distribution object.
+        """Function to add data to the distribution object.
             If the object already contains data, the new data will be appended
             to it.
         Args:
