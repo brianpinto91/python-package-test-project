@@ -3,6 +3,14 @@ import matplotlib.pyplot as plt
 import logging
 from ._base import Base
 
+logger = logging.getLogger('user')
+logger.setLevel(logging.INFO)
+log_handler = logging.StreamHandler()
+log_handler.setLevel(logging.INFO)
+log_formatter = logging.Formatter('%(levelname)s: %(message)s')
+log_handler.setFormatter(log_formatter)
+logger.addHandler(log_handler)
+
 class Gaussian(Base):
     """A class file to represent gaussian distribution data, calculate the basic
         statistics, visualize the histogram and probability density function.
@@ -80,7 +88,7 @@ class Gaussian(Base):
             plt.xlabel('data')
             plt.ylabel('count')
         else:
-            logging.warning("Distribution object is empty!")
+            logger.info("Distribution object is empty!")
 
     def __pdf_x(self, x):
         """Function to evaluate the probability density function at x for Gaussian
@@ -135,7 +143,7 @@ class Gaussian(Base):
             plt.ylabel('values')
             plt.show()
         else:
-            logging.warning("Distribution object is empty!")
+            logger.info("Distribution object is empty!")
 
     def __add__(self, other):
         """Function to add together two Gaussian distributions
