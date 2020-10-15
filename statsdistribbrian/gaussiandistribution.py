@@ -85,7 +85,7 @@ class Gaussian(Base):
         if self.data is not None:
             plt.hist(self.data)
             plt.title('Histogram of Data')
-            plt.xlabel('data')
+            plt.xlabel('values')
             plt.ylabel('count')
         else:
             logger.info("Distribution object is empty!")
@@ -133,14 +133,14 @@ class Gaussian(Base):
             for i in range(n_spaces):
                 tmp = min_range + interval*i
                 x.append(tmp)
-                y.append(self._pdf_x(tmp))
+                y.append(self.__pdf_x(tmp))
 
             # make the plots
             plt.hist(self.data, density=True)
             plt.plot(x, y)
             plt.title('Normed histogram and probability distribution function')
-            plt.xlabel('density')
-            plt.ylabel('values')
+            plt.xlabel('values')
+            plt.ylabel('density')
             plt.show()
         else:
             logger.info("Distribution object is empty!")
